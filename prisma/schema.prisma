@@ -1,0 +1,18 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model hearts {
+  id         Int    @id @default(autoincrement())
+  message    String @db.Text
+  viewed     Int    @default(0) @db.TinyInt
+  code       String @default("0") @db.VarChar(8)
+  passphrase String @db.Text
+  oneTime    Int    @default(0) @db.TinyInt
+  recipient  String @default("0") @db.VarChar(128)
+}
